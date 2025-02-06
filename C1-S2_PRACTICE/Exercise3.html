@@ -1,0 +1,126 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter TASKS</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 20px;
+          background-color: #f9f9f9;
+        }
+    
+        .task {
+          padding: 10px;
+          color: white;
+          text-align: center;
+          margin-bottom: 10px;
+          border-radius: 5px;
+          font-weight: bold;
+        }
+    
+        .priority-0 {
+          background-color: grey;
+        }
+    
+        .priority-1 {
+          background-color: red;
+        }
+      </style>
+</head>
+<body>
+
+    <h1>Task List</h1>
+
+    <form id="taskForm">
+        <input type="text" id="taskDescription" placeholder="Task name" required>
+        <select id="taskPriority">
+        <option value="1">Important</option>
+        <option value="0">Normal</option>
+        </select>
+        <button type="submit">Add Task</button>
+    </form>
+    
+    <div id="filters">
+        <button id="showImportant">Show only the important tasks</button>
+        <button id="showNotImportant">Show the tasks that are not important</button>
+        <button id="showAll">Show all tasks</button>
+    </div>
+
+
+    
+    <div id="taskContainer"></div>
+
+
+    <script>
+       // Task list
+        let tasks = [
+        { description: "Task 1", priority: 1 },
+        { description: "Task 2", priority: 0 },
+        { description: "Task 3", priority: 1 },
+        ];
+
+        // Function to display tasks on the DOM
+        function displayTasks(tasks) {
+        const container = document.getElementById("taskContainer");
+        
+        // Clear existing tasks in the DOM
+        container.innerHTML = "";
+
+        // Create and append each task
+        tasks.forEach((task) => {
+            const taskElement = document.createElement("div");
+            taskElement.textContent = task.description;
+            taskElement.classList.add("task");
+            taskElement.classList.add(`priority-${task.priority}`);
+            container.appendChild(taskElement);
+        });
+        }
+
+        // Function to handle form submission
+        function addTask(event) {
+        event.preventDefault(); // Prevent form from reloading the page
+
+        // Get task description and priority from the form
+        const description = document.getElementById("taskDescription").value;
+        const priority = parseInt(document.getElementById("taskPriority").value);
+
+        // Create a new task object
+        const newTask = { description, priority };
+
+        // Add the new task to the tasks array
+        tasks.push(newTask);
+
+        // Clear the form inputs
+        document.getElementById("taskDescription").value = "";
+        document.getElementById("taskPriority").value = "1";
+
+        // Update the DOM
+        displayTasks(tasks);
+        }
+
+        // Attach event listener to the form
+        document.getElementById("taskForm").addEventListener("submit", addTask);
+
+        // Initial rendering of tasks
+        displayTasks(tasks);
+        function filterTasks(priority) {
+        if (priority === "all") {
+            displayTasks(tasks); // Show all tasks
+        } else {
+            const filteredTasks = tasks.filter((task) => task.priority === priority);
+            displayTasks(filteredTasks);
+        }
+        }
+
+        document.getElementById("taskForm").addEventListener("submit", addTask);
+
+        document.getElementById("showImportant").addEventListener("click", () => filterTasks(1));
+        document.getElementById("showNotImportant").addEventListener("click", () => filterTasks(0));
+        document.getElementById("showAll").addEventListener("click", () => filterTasks("all"));
+
+        displayTasks(tasks);
+    </script>
+</body>
+</html>
