@@ -1,5 +1,5 @@
 // 1- List of products in the shop : each product having a unique id, name and unit price:
-const PRODUCTS = [
+export const PRODUCTS = [
   { id: 1, name: "Apple", price: 2.5 },
   { id: 2, name: "Banana", price: 1.5 },
   { id: 3, name: "Orange", price: 3 },
@@ -9,7 +9,7 @@ const PRODUCTS = [
 
 // 2-  Shopping cart : which contain the items the customer wants to buy and their quantity
 // Exemple : Here the cart contains 2 apples and 1 orange  and the cart amount is 8 dollars
-const SHOPPING_CART = [
+export const SHOPPING_CART = [
   { id: 1, quantity: 2 },
   { id: 3, quantity: 1 },
 ];
@@ -18,7 +18,7 @@ const SHOPPING_CART = [
  *  TODO  : Complete this function to get the total amount of the current shopping cart.
  * @returns the Shopping cart total amount
  */
-function getCartTotalAmount() {
+export function getCartTotalAmount() {
   let result = 0;
   // Write your code here
   for (let i = 0; i < SHOPPING_CART.length; i++) {
@@ -39,7 +39,7 @@ function getCartTotalAmount() {
  *
  * @param {*} productId  the product id to add
  */
-function addProductToCart(productId) {
+export function addProductToCart(productId) {
   // Write your code here
   let product = SHOPPING_CART.find((p) => p.id === productId);
   if (product) {
@@ -63,7 +63,7 @@ function addProductToCart(productId) {
  *
  * @param {*} productId  the product id to add
  */
-function removeProductFromCart(productId) {
+export function removeProductFromCart(productId) {
   // Write your code here
   let product = SHOPPING_CART.find((p) => p.id === productId);
   if (product) {

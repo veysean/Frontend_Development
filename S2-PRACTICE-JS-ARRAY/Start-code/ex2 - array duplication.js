@@ -5,7 +5,7 @@
 
 // TODO:
 // - Update the data strucure and the functions to manage those new properties
-const STUDENTS_DATA = [
+export const STUDENTS_DATA = [
   { firstName: "An", age: 20, lastname: "Nguyen", batch: 1 },
   { firstName: "Bình", age: 22, lastname: "Lala", batch: 2 },
   { firstName: "Cẩm", age: 21, lastname: "Haha", batch: 3 },
@@ -17,7 +17,7 @@ const STUDENTS_DATA = [
  * @param {string} firstName - the student first name
  * @param {age} newAge  - the student new age
  */
-function updateStudentAge(firstName,lastName , newAge) {
+export function updateStudentAge(firstName,lastName , newAge) {
   let student = STUDENTS_DATA.find((s) => s.firstName === firstName && s.lastname === lastName);
   if (student) {
     student.age = newAge;

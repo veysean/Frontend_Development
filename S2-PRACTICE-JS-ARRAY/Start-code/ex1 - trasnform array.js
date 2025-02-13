@@ -10,7 +10,7 @@
  * @param {array} listOfNumbers - a list of numbers
  * @returns a  list of objects
  */
-function transformToObjects(listOfNumbers) {
+export function transformToObjects(listOfNumbers) {
 
   const result = listOfNumbers.map((number) => {
     return { val: number };
